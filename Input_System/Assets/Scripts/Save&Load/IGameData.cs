@@ -4,7 +4,9 @@ using UnityEngine;
 
 public interface IGameData
 {
+    //reads the data
     void LoadData (GameData data);
 
-    void SaveData (ref GameData data);
+    //ref allows script to modify data
+    void SaveData (GameData data);
 }
