@@ -9,36 +9,9 @@ namespace DataSpace
 {
     // Game Data
     [System.Serializable]
-    public class GData
+    public class StartScreen
     {
-        public GData()
-        {
-
-        }
-    }
-
-
-
-    // UI Data
-    [System.Serializable]
-
-    public class UIData
-    {
-
-        public UIData()
-        {
-
-        }
-    }
-
-
-    // Audio Data
-    [System.Serializable]
-    public class AudioData
-    {
-
-
-        public AudioData()
+        public StartScreen()
         {
 
         }
@@ -72,4 +45,14 @@ namespace DataSpace
         }
     }
 
+    [System.Serializable]
+    public class PlayerSettings
+    {
+
+        public PlayerSettings()
+        {
+
+        }
+
+    }
 }

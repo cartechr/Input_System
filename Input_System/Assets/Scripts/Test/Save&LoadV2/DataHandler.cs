@@ -30,7 +30,6 @@ namespace DataSpace
         {
             // Use Path.Combne to account for different OS's having different path separators
             string fullPath = Path.Combine(dataDirPath, dataFileName);
-            T loadedData = null;
             if (File.Exists(fullPath))
             {
                 try
