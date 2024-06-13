@@ -1,10 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
-public class DataHandler : MonoBehaviour
+
+namespace DataSpace
 {
-    // This script handles the data conversion and encryption
+    public class DataHandler : MonoBehaviour
+    {
+        // This script handles the data conversion and encryption
+
+        private readonly string key = "encryption_key"; // Must be 32 bytes for AES-256
 
 
+
+    }
 }
