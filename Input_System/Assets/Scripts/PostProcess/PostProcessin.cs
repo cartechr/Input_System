@@ -9,22 +9,15 @@ public class PostProcessin : MonoBehaviour
 {
     [SerializeField] UniversalRenderPipelineAsset URPAsset;
 
-    public bool isBloom;
-    public bool isChannelMixer;
-    public bool isChromaticAbberation;
-    public bool isColorAdjustments;
-    public bool isColorCurves;
-    public bool isDepthOfField;
-    public bool isDepthOffieldModeParameter;
-    public bool isFilmGrain;
-    public bool isFilmGrainLookupParameter;
-
 
     [HideInInspector] public bool isTest;
     [HideInInspector] public float isFloat;
     [HideInInspector] public string isString;
 
-    [Space(50)]
+    public bool isBloom;
+    public bool isLensDirt;
+
+    [Space(25)]
     [Header("Bloom")]
     public MinFloatParameter clamp;
     public MinFloatParameter dirIntensity;
@@ -35,7 +28,33 @@ public class PostProcessin : MonoBehaviour
     public MinFloatParameter threshold;
     public ColorParameter tint;
 
-    public bool IsActive;
+    [Space(5)]
+    [Header("Channel Mixer")]
+    public ClampedFloatParameter blueOutBlueIn = new ClampedFloatParameter(0, 0, 10);
+    public ClampedFloatParameter blueOutGreenIn = new ClampedFloatParameter(0, 0, 10);
+    public ClampedFloatParameter blueOutRedIn = new ClampedFloatParameter(0, 0, 10);
+    public ClampedFloatParameter greenOutBlueIn = new ClampedFloatParameter(0, 0, 10);
+    public ClampedFloatParameter greenOutGreenIn = new ClampedFloatParameter(0, 0, 10);
+    public ClampedFloatParameter greenOutRedIn = new ClampedFloatParameter(0, 0, 10);
+    public ClampedFloatParameter redOutBlueIn = new ClampedFloatParameter(0, 0, 10);
+    public ClampedFloatParameter redOutGreenIn = new ClampedFloatParameter(0, 0, 10);
+    public ClampedFloatParameter redOutRedIn = new ClampedFloatParameter(0, 0, 10);
+
+    [Space (5)]
+    [Header("Chromatic Aberration")]
+    public ClampedFloatParameter chrom_intensity = new ClampedFloatParameter (0, 0, 10);
+
+    [Space(5)]
+    [Header("Color Adjustments")]
+    public ColorParameter colorFilter;
+    public ClampedFloatParameter contrast = new ClampedFloatParameter(0, 0, 10);
+    public ClampedFloatParameter hueShift = new ClampedFloatParameter(0, 0, 10);
+    public FloatParameter postExposure;
+    public ClampedFloatParameter saturation = new ClampedFloatParameter(0, 0, 10);
+
+    [Space(5)]
+    [Header("Color Curves")]
+    public TextureCurveParameter blue;
 
     private void Update()
     {
@@ -45,10 +64,11 @@ public class PostProcessin : MonoBehaviour
 
             //HDR();
             //AntiAliasing();
-            clamp.value = isFloat;
+            //clamp.value = isFloat;
 
             //dirTexture.dimension;
             
+            Debug.Log(blue.value);
 
             
 
