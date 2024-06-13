@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        //M ake sure there's only one instance
+        // Make sure there's only one instance
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

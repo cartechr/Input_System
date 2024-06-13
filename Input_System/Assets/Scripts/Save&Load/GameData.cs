@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameData
 {
-    //Declare variables to save
+    // Declare variables to save
 
 
     // the values defined in this constructor will be the default values
