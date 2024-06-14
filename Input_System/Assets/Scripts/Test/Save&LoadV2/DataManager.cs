@@ -32,14 +32,15 @@ namespace DataSpace
 
         public void NewGame()
         {
-
+            // Wipe previous data? (except player settings)
         }
 
-        public void LoadGameData<T>(DataHandler<T> dataHandler) where T : class
+        public void LoadData<T>(DataHandler<T> dataHandler) where T : class
         {
-            // Example: Load game data of type T using the provided data handler
+            // Load Data
             T loadedData = dataHandler.Load();
 
+            // Log Error if no Data
             if (loadedData == null)
             {
                 Debug.LogError("Error Loading Data");
@@ -52,12 +53,25 @@ namespace DataSpace
 
         public void SaveData<T>(DataHandler<T> dataHandler) where T : class
         {
-           // T savedData = dataHandler.Save
+            // T savedData = dataHandler.Save
+
+            T savedData = dataHandler.Save();
+
+            // Log Error if you no game data
+            if (loadedData == null)
+            {
+                Debug.LogError("Error Loading Data");
+                // NewGame() - start new game if no data?
+            }
+            else
+            {
+                Debug.Log($"Success: Loaded game data of type {typeof(T).Name}: {loadedData}");
+            }
         }
 
         private void OnApplicationQuit()
         {
-            
+            // Do what with the data with the game closed?
         }
 
 
