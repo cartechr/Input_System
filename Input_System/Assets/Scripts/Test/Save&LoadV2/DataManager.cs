@@ -20,13 +20,15 @@ namespace DataSpace
         [Tooltip("Choose to encrypt the data or not")]
         [SerializeField] private bool useEncryption;
 
-        // Reference to class data handlers
+        // Class Handler Instances
         private DataHandler<Settings> settingsHandler;
         private DataHandler<Slot1> slot1Handler;
         private DataHandler<Slot2> slot2Handler;
         private DataHandler<Slot3> slot3Handler;
         private DataHandler<Slot4> slot4Handler;
         private DataHandler<Slot5> slot5Handler;
+
+        private DataHandler<object>[] dataHandler;
 
         // Singleton instance
         public static DataManager Instance { get; private set; }
@@ -58,10 +60,10 @@ namespace DataSpace
             LoadData("Settings", settingsHandler);
         }
 
-        public void LoadData<T>(string name, DataHandler<T> dataHandler) where T : class, new()
+        public void LoadData(string name, int handlerIndex)
         {
             // Load saved data from file
-            T loadData = dataHandler.Load();
+            var loadData = dataHandler[handlerIndex].Load();
 
             if (loadData == null)
             {
@@ -75,7 +77,7 @@ namespace DataSpace
             }
         }
 
-        public void SaveData<T>(string name, T data, DataHandler<T> dataHandler) where T : class
+        public void SaveData<T>(string name, T data)
         {
             // Save data to file
             dataHandler.Save(data);

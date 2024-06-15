@@ -4,7 +4,6 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-
 namespace DataSpace
 {
     // This script handles the data conversion and encryption
@@ -15,7 +14,7 @@ namespace DataSpace
         private string dataDirPath = "";
         private string dataFileName = "";
         private bool useEncryption;
-        private readonly string key = "encryption_key"; // Must be 32 characters long for AES-256
+        private readonly string key = "your_secure_32_character_key_here"; // Must be 32 characters long for AES-256
 
         // Constructor with default values
         public DataHandler(string dataDirPath, string dataFileName, bool useEncryption)
@@ -44,7 +43,7 @@ namespace DataSpace
                         }
                     }
 
-                    // Optionaly decrypt the data
+                    // Optionally decrypt the data
                     if (useEncryption)
                     {
                         dataToLoad = Decrypt(dataToLoad);
@@ -53,10 +52,9 @@ namespace DataSpace
                     // Deserialize the data from Json back into C#
                     return JsonUtility.FromJson<T>(dataToLoad);
                 }
-
                 catch (Exception e)
                 {
-                    Debug.LogError($"Error occured when trying to load data from file: {fullPath}\n{e}");
+                    Debug.LogError($"Error occurred when trying to load data from file: {fullPath}\n{e}");
                 }
             }
             return null;
@@ -81,7 +79,7 @@ namespace DataSpace
                     dataToStore = Encrypt(dataToStore);
                 }
 
-                // Write the seriliazied data to the file
+                // Write the serialized data to the file
                 using (FileStream stream = new FileStream(fullPath, FileMode.Create))
                 {
                     using (StreamWriter writer = new StreamWriter(stream))
@@ -92,23 +90,22 @@ namespace DataSpace
             }
             catch (Exception e)
             {
-                Debug.LogError($"error occured while saving data to file: {fullPath}\n{e}");
+                Debug.LogError($"Error occurred while saving data to file: {fullPath}\n{e}");
             }
         }
 
         private string Encrypt(string plainText)
         {
             byte[] keyBytes = Encoding.UTF8.GetBytes(key);
-            byte[] iv = new byte[16]; // Initialization vector with zeros
             using (Aes aes = Aes.Create())
             {
                 aes.Key = keyBytes;
-                aes.IV = iv;
-                aes.Mode = CipherMode.CBC;
-                aes.Padding = PaddingMode.PKCS7;
+                aes.GenerateIV(); // Generate a new IV for each encryption
+                byte[] iv = aes.IV;
 
                 using (MemoryStream ms = new MemoryStream())
                 {
+                    ms.Write(iv, 0, iv.Length); // Prepend IV to the ciphertext
                     using (CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
                     {
                         using (StreamWriter writer = new StreamWriter(cs))
@@ -121,17 +118,20 @@ namespace DataSpace
             }
         }
 
-        private string Decrypt(string data)
+        private string Decrypt(string cipherText)
         {
+            byte[] fullCipher = Convert.FromBase64String(cipherText);
+            byte[] iv = new byte[16];
+            byte[] cipherBytes = new byte[fullCipher.Length - iv.Length];
+
+            Array.Copy(fullCipher, iv, iv.Length);
+            Array.Copy(fullCipher, iv.Length, cipherBytes, 0, cipherBytes.Length);
+
             byte[] keyBytes = Encoding.UTF8.GetBytes(key);
-            byte[] cipherBytes = Convert.FromBase64String(data);
-            byte[] iv = new byte[16]; // Initialization vector with zeros
             using (Aes aes = Aes.Create())
             {
                 aes.Key = keyBytes;
                 aes.IV = iv;
-                aes.Mode = CipherMode.CBC;
-                aes.Padding = PaddingMode.PKCS7;
 
                 using (MemoryStream ms = new MemoryStream(cipherBytes))
                 {
