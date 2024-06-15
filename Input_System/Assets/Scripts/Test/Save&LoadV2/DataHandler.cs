@@ -28,7 +28,7 @@ namespace DataSpace
         // Returns Data
         public T Load()
         {
-            // Use Path.Combne to account for different OS's having different path separators
+            // Use Path.Combine to account for different OS's having different path separators
             string fullPath = Path.Combine(dataDirPath, dataFileName);
             if (File.Exists(fullPath))
             {
