@@ -14,14 +14,15 @@ namespace DataSpace
         private string dataDirPath = "";
         private string dataFileName = "";
         private bool useEncryption;
-        private readonly string key = "your_secure_32_character_key_here"; // Must be 32 characters long for AES-256
+        private readonly string key = ""; // Must be 32 characters long for AES-256
 
         // Constructor with default values
-        public DataHandler(string dataDirPath, string dataFileName, bool useEncryption)
+        public DataHandler(string dataDirPath, string dataFileName, bool useEncryption, string encrpytionKey)
         {
             this.dataDirPath = dataDirPath;
             this.dataFileName = dataFileName;
             this.useEncryption = useEncryption;
+            this.key = encrpytionKey;
         }
 
         // Returns Data

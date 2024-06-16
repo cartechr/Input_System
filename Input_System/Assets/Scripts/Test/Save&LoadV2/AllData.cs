@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 
 // All the game's active data
@@ -8,15 +7,37 @@ namespace DataSpace
     #region Settings
 
     [Serializable]
-    public class Settings
+    public class SettingsData
     {
-        // Leave alone
+        // Changed Values
 
-        public Settings()
+        public bool fullscreen;
+
+        public SettingsData()
         {
 
+            //Default values
+            fullscreen = true;
         }
 
+    }
+
+    #endregion
+
+    #region Save Slots
+    // Game Data
+    [Serializable]
+    public class SlotData
+    {
+        public IntroData introData;
+        public LevelData levelData;
+        public PlayerData playerData;
+        public SlotData()
+        {
+            introData = new IntroData();
+            levelData = new LevelData();
+            playerData = new PlayerData();
+        }
     }
 
     #endregion
@@ -25,88 +46,12 @@ namespace DataSpace
 
     // Stats, Inventory, Location within a level, etc.
     [Serializable]
-    public class Player
+    public class PlayerData
     {
 
 
-        public Player()
+        public PlayerData()
         {
-
-        }
-    }
-
-    #endregion
-
-    #region Save Slots
-    // Game Data
-    [Serializable]
-    public class Slot1
-    {
-        public Intro introData;
-        public Level levelData;
-        public Player player;
-        public Slot1()
-        {
-            introData = new Intro();
-            levelData = new Level();
-            player = new Player();
-        }
-    }
-
-    [Serializable]
-    public class Slot2
-    {
-        public Intro introData;
-        public Level levelData;
-        public Player player;
-
-        public Slot2()
-        {
-            introData = new Intro();
-            levelData = new Level();
-            player = new Player();
-        }
-    }
-
-    [Serializable]
-    public class Slot3
-    {
-        public Intro introData;
-        public Level levelData;
-        public Player player;
-
-        public Slot3()
-        {
-            introData = new Intro();
-            levelData = new Level();
-            player = new Player();
-        }
-    }
-
-    public class Slot4
-    {
-        public Intro introData;
-        public Level levelData;
-        public Player player;
-        public Slot4()
-        {
-            introData = new Intro();
-            levelData = new Level();
-            player = new Player();
-        }
-    }
-
-    public class Slot5
-    {
-        public Intro introData;
-        public Level levelData;
-        public Player player;
-
-        public Slot5()
-        {
-            introData = new Intro();
-            levelData = new Level();
-            player = new Player();
 
         }
     }
@@ -120,21 +65,21 @@ namespace DataSpace
     // Objectives, Collectibles, Environment States
 
     [Serializable]
-    public class Intro
+    public class IntroData
     {
 
 
-        public Intro()
+        public IntroData()
         {
 
         }
     }
 
     [Serializable]
-    public class Level
+    public class LevelData
     {
 
-        public Level()
+        public LevelData()
         {
 
         }
@@ -142,21 +87,22 @@ namespace DataSpace
 
     [Serializable]
 
-    public class Level2
+    public class Level2Data
     {
 
 
-        public Level2()
+        public Level2Data()
         {
 
         }
     }
 
-    public class Level3
+    [Serializable]
+    public class Level3Data
     {
 
 
-        public Level3()
+        public Level3Data()
         {
 
         }
