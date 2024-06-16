@@ -74,6 +74,8 @@ namespace DataSpace
 
                 // Serialize the C# data in Json (true for pretty print)
                 string dataToStore = JsonUtility.ToJson(data, true);
+                Debug.Log(dataToStore);
+
 
                 if (useEncryption)
                 {

@@ -48,9 +48,10 @@ namespace DataSpace
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            if (!string.IsNullOrEmpty(encryptionKey) || encryptionKey.Length != 32 || encryptionKey.Contains(" "))
+            if (string.IsNullOrEmpty(encryptionKey) || encryptionKey.Length != 32 || encryptionKey.Contains(" "))
             {
                 Debug.LogError("Error Loading Data - Ensure encryption key is formatted correctly");
+                Debug.Log($"Encryption key is {encryptionKey.Length} characters long");
                 return;
             }
 
@@ -81,6 +82,8 @@ namespace DataSpace
             settingsDataObjects = FindAllSettingsDataObjects();
             slotsDataObjects = FindAllSlotsDataObjects();
             LoadSettings();
+
+            Debug.Log($"Persistence path - \n{Application.persistentDataPath}");
         }
 
         #region Settings
@@ -105,6 +108,7 @@ namespace DataSpace
             foreach(ISettingsData settingsDataObj in settingsDataObjects)
             {
                 settingsDataObj.SaveSettings(settingsData);
+                Debug.Log(settingsDataObj.ToString());
             }
 
             Debug.Log("Saved Settings Loaded");
