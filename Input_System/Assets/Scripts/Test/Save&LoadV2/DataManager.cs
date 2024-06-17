@@ -42,7 +42,7 @@ namespace DataSpace
             // Ensure only one instance of DataManager exists
             if (Instance != null)
             {
-                Debug.LogError("Found more than one Data Manager in the scene.");
+                Debug.LogError("Found more than one Data Manager in the game.");
                 Destroy(gameObject);
             }
             Instance = this;
