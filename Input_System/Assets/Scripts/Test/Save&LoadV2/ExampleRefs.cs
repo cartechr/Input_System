@@ -13,17 +13,17 @@ public class ExampleRefs : MonoBehaviour, ISlotsData, ISettingsData
         //Data in this script = Interface Data
 
         //Loads data from save
-        isFullScreen = data.fullscreen;
-        testInt = data.Int;
+
+       // isFullScreen = data.fullscreen;
+       // testInt = data.Int;
     }
 
     public void SaveSettings(SettingsData data)
     {
         //Interface Data = Script Data
         // Saves data into settings data
-        data.fullscreen = isFullScreen;
+        //data.fullscreen = isFullScreen;
 
-        data.Int = testInt;
     }
 
     public void LoadSlot(SlotData data)
