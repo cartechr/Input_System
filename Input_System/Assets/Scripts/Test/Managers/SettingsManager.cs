@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using DataSpace;
 using TMPro;
-using Unity.VisualScripting;
-using Steamworks;
 
 public class SettingsManager : MonoBehaviour, ISettingsData
 {
@@ -38,6 +36,10 @@ public class SettingsManager : MonoBehaviour, ISettingsData
         UpdateResolutionText();
     }
 
+    public void Test_These_Please(string name, string hi)
+    {
+
+    }
     public void settingChanges(string setting)
     {
         ChangedSettings.Add(setting);
@@ -187,7 +189,7 @@ public class SettingsManager : MonoBehaviour, ISettingsData
     // Brightness
     // Fullscreen / Display Mode
     // Vsync
-    // Resolution
+    // Resolution - list at start
     // Anti-Aliasing
     // Fidelity FX Super Resolution
     // Texture Resolution
@@ -198,8 +200,8 @@ public class SettingsManager : MonoBehaviour, ISettingsData
     // Film Grain
     // Chromatic Aberration
     // Depth of Field
-    // Refresh Rate
-    // FPS Limit
+    // Refresh Rate - list at start
+    // FPS Limit - list at start
     // Gamma?
 
     // LOD?
